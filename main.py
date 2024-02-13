@@ -1,4 +1,5 @@
 import streamlit as st
+
 st.title("2024 전기차 보조금 계산기")
 
 col1, col2 = st.columns(2)
@@ -40,6 +41,7 @@ with col2:
             "ETC",
         ],
     )
+    max_local_subsidy = st.slider("지자체보조금", 50, 500)
 
 support_energy = 200 if car_type == "중/대형" else 150
 
@@ -71,7 +73,7 @@ else:
 support_distance *= k_distance
 
 
-support = support_distance + support_energy if car_type != "초소형" else 250
+support = (support_distance + support_energy) if car_type != "초소형" else 250
 support += 20 if has_obd else 0
 
 
@@ -95,4 +97,8 @@ support += 250 if is_taxi else 0
 
 support *= 1.0 if price_dc == "~5499" else 0.5 if price_dc == "5500~8499" else 0.0
 
-st.header(f"예상 전기차 보조금 : {support:.2f} 만원")
+st.header(f"예상 전기차 보조금(국고) : {support:.2f} 만원")
+
+local_subsidy = max_local_subsidy * support / (650 if car_type == "중/대형" else 550)
+st.header(f"예상 전기차 보조금(지자체) : {local_subsidy:.2f} 만원")
+st.header(f"예상 총 전기차 보조금 : {local_subsidy + support:.2f} 만원")
