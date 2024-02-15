@@ -14,8 +14,8 @@ with col1:
         cold_distance = st.slider("저온주행거리", 50, 1000)
         hot_distance_watt = st.slider("상온연비", 1.0, 8.0, step=0.1)
     with col12:
-        batt_coef = st.slider("배터리 계수(에너지 밀도)", 0.7, 1.0, step=0.1)
-        batt_recycle = st.slider("배터리 계수(자원 순환성)", 0.7, 1.0, step=0.1)
+        batt_coef = st.slider("배터리 계수(에너지 밀도)", 0.6, 1.0, step=0.1)
+        batt_recycle = st.slider("배터리 계수(자원 순환성)", 0.6, 1.0, step=0.1)
         service_center = st.slider("사후관리계수", 0.7, 1.0, step=0.1)
 
 with col2:
